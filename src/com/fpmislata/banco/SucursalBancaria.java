@@ -11,7 +11,7 @@ package com.fpmislata.banco;
 public class SucursalBancaria {
     private String IdSucursalBancaria;
     private String EntidadBancaria;
-    private int CodigoSucursal;
+    private String CodigoSucursal;
     private String Nombre;
 
     
@@ -53,14 +53,14 @@ public class SucursalBancaria {
     /**
      * @return the CodigoSucursal
      */
-    public int getCodigoSucursal() {
+    public String getCodigoSucursal() {
         return CodigoSucursal;
     }
 
     /**
      * @param CodigoSucursal the CodigoSucursal to set
      */
-    public void setCodigoSucursal(int CodigoSucursal) {
+    public void setCodigoSucursal(String CodigoSucursal) {
         this.CodigoSucursal = CodigoSucursal;
     }
 

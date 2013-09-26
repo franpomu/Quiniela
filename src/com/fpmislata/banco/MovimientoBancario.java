@@ -10,5 +10,6 @@ package com.fpmislata.banco;
  */
 public class MovimientoBancario {
     
-    private String IdMovimientoBancario
+    private String IdMovimientoBancario;
+    private 
 }

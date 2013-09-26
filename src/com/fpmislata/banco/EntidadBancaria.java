@@ -11,7 +11,7 @@ package com.fpmislata.banco;
 public class EntidadBancaria {
     
         private String IdEntidad;
-        private int CodigoEntidad;
+        private String CodigoEntidad;
         private String Nombre;
         private String Cif;
         private TipoEntidadBancaria TipoEntidad;
@@ -42,14 +42,14 @@ public class EntidadBancaria {
     /**
      * @return the CodigoEntidad
      */
-    public int getCodigoEntidad() {
+    public String getCodigoEntidad() {
         return CodigoEntidad;
     }
 
     /**
      * @param CodigoEntidad the CodigoEntidad to set
      */
-    public void setCodigoEntidad(int CodigoEntidad) {
+    public void setCodigoEntidad(String CodigoEntidad) {
         this.CodigoEntidad = CodigoEntidad;
     }
 
