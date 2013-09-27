@@ -37,7 +37,7 @@ public class Banco {
         MovimientoBancario MovimientoBancario1 = new MovimientoBancario("1",TipoMovimientoBancario.Debe,c1, new GregorianCalendar(2012,02,20).getTime(),c1,"QuitarDinero");
         MovimientoBancario MovimientoBancario2 = new MovimientoBancario("2",TipoMovimientoBancario.Haber,c2, new GregorianCalendar(2013,01,01).getTime(),c2,"PonerDinero");
         
-        //list<MovimientoBancario> movimiento = 
+        //list<MovimientoBancario> movimiento = cuentabancaria.getmovimiento
         //for(movimiento:cuentabancaria.getmovimiento)
         
     }
