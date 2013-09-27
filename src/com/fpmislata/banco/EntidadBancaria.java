@@ -4,6 +4,9 @@
  */
 package com.fpmislata.banco;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author alumno
@@ -15,9 +18,10 @@ public class EntidadBancaria {
         private String Nombre;
         private String Cif;
         private TipoEntidadBancaria TipoEntidad;
+        private List<SucursalBancaria> listaSucursal = new ArrayList();
 
         
-    EntidadBancaria(){
+    EntidadBancaria(String IdEntidad,String CodigoEntidad,String Nombre,String Cif,TipoEntidadBancaria TipoEntidad){
         this.IdEntidad=IdEntidad;
         this.CodigoEntidad=CodigoEntidad;
         this.Nombre=Nombre;
@@ -93,6 +97,20 @@ public class EntidadBancaria {
      */
     public void setTipoEntidad(TipoEntidadBancaria TipoEntidad) {
         this.TipoEntidad = TipoEntidad;
+    }
+
+    /**
+     * @return the listaSucursal
+     */
+    public List<SucursalBancaria> getListaSucursal() {
+        return listaSucursal;
+    }
+
+    /**
+     * @param listaSucursal the listaSucursal to set
+     */
+    public void setListaSucursal(List<SucursalBancaria> listaSucursal) {
+        this.listaSucursal = listaSucursal;
     }
         
 }
