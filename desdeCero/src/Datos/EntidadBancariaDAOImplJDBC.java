@@ -117,6 +117,7 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO{
         String selectSQL="SELECT idEntidad,codigoEntidad,nombre,cif,tipoEntidadBancaria FROM entidadbancaria";
         
         try{
+            
             EntidadBancaria entidadBancaria=new EntidadBancaria();
             Connection conexion=connectionFactory.getConnection();
             PreparedStatement ps=conexion.prepareStatement(selectSQL);
@@ -130,14 +131,16 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO{
                 entidadBancaria.setTipoEntidad(TipoEntidadBancaria.valueOf(rs.getString("tipoEntidadBancaria")));
                 //añade la entidad al final de la lista maxacando la anterior, si hay 3 entidades, muestra 3 veces la ultima entidad
                 entidadesBancarias.add(entidadBancaria);
-                
+                             
             }
+            
             conexion.close();
+            
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
-       
-        return entidadesBancarias;
+       return entidadesBancarias;
+        
     }
     
 }
