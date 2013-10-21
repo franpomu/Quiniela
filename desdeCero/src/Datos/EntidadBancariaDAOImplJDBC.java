@@ -24,22 +24,22 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO{
     public EntidadBancaria read(Integer idEntidad) {
             
         EntidadBancaria entidadBancaria=null;
-        String selectSQL="SELECT * FROM entidadbancaria WHERE idEntidad=?";
+        String selectSQL="SELECT idEntidad,codigoEntidad,nombre,cif,tipoEntidadBancaria FROM entidadbancaria WHERE idEntidad="+idEntidad;
         
             try{
                 
                 Connection conexion=connectionFactory.getConnection();
                 PreparedStatement ps=conexion.prepareStatement(selectSQL);
-                ps.setInt(1, idEntidad);
+               // ps.setInt(1, idEntidad);
                 ResultSet rs=ps.executeQuery(selectSQL);
                 
                 if(rs.next()){
                     entidadBancaria=new EntidadBancaria();
                     entidadBancaria.setIdEntidad(idEntidad);
-                    entidadBancaria.setCodigoEntidad(rs.getString("codigoentidad"));
+                    entidadBancaria.setCodigoEntidad(rs.getString("codigoEntidad"));
                     entidadBancaria.setNombre(rs.getString("nombre"));
                     entidadBancaria.setCif(rs.getString("cif"));
-                    entidadBancaria.setTipoEntidad((TipoEntidadBancaria.valueOf(rs.getString("tipoentidadbancaria"))));
+                    entidadBancaria.setTipoEntidad((TipoEntidadBancaria.valueOf(rs.getString("tipoEntidadBancaria"))));
                     if(rs.next()) throw new RuntimeException();
                     
                     conexion.close();

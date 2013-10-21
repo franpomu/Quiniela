@@ -26,7 +26,13 @@ public class DesdeCero {
         EntidadBancaria ent=new EntidadBancaria(1,"0001","Entidad1","0123", TipoEntidadBancaria.Banco);
         SucursalBancaria suc=new SucursalBancaria(2,"Entidad1","0236598","Bankia");
         
-        entidadBancaria.insert(ent);
+       ent= entidadBancaria.read(1);
+       System.out.println(ent.getIdEntidad());
+       System.out.println(ent.getCodigoEntidad());
+       System.out.println(ent.getNombre());
+       System.out.println(ent.getCif());
+       System.out.println(ent.getTipoEntidad());
+        //entidadBancaria.insert(ent);
         
     }
 }
