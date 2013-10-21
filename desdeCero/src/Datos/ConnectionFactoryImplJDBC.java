@@ -24,7 +24,7 @@ public class ConnectionFactoryImplJDBC implements ConnectionFactory{
         }
         Connection conexion=null;
         try{
-            conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/banco","root", "root");
+            conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/banco","root", "159753");
         }catch(SQLException e){
             System.out.print("Fallo en la conexion");
             e.printStackTrace();
