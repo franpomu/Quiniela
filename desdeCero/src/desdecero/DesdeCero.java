@@ -41,13 +41,13 @@ public class DesdeCero {
        entidadBancaria.update(ent1);*/
         List<EntidadBancaria> lista=entidadBancariaDAO.findAll();
         
-        /*for(EntidadBancaria e:lista){
+        for(EntidadBancaria e:lista){
             System.out.println(e.getIdEntidad());
             System.out.println(e.getCodigoEntidad());
             System.out.println(e.getCif());
             System.out.println(e.getNombre());
             System.out.println(e.getTipoEntidad());
-        }*/
+        }
         
     }
 }

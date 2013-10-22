@@ -113,33 +113,32 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO{
     @Override
     public List<EntidadBancaria> findAll() {
         
-        List<EntidadBancaria> entidadesBancarias=new ArrayList<>();
+        
         String selectSQL="SELECT idEntidad,codigoEntidad,nombre,cif,tipoEntidadBancaria FROM entidadbancaria";
         
         try{
-            
-            EntidadBancaria entidadBancaria=new EntidadBancaria();
+            List<EntidadBancaria> entidadesBancarias=new ArrayList();
             Connection conexion=connectionFactory.getConnection();
             PreparedStatement ps=conexion.prepareStatement(selectSQL);
             ResultSet rs=ps.executeQuery();
             
             while(rs.next()){
+                EntidadBancaria entidadBancaria=new EntidadBancaria();
                 entidadBancaria.setIdEntidad(rs.getInt("idEntidad"));
                 entidadBancaria.setCodigoEntidad(rs.getString("codigoEntidad"));
                 entidadBancaria.setNombre(rs.getString("nombre"));
                 entidadBancaria.setCif(rs.getString("cif"));
                 entidadBancaria.setTipoEntidad(TipoEntidadBancaria.valueOf(rs.getString("tipoEntidadBancaria")));
-                //añade la entidad al final de la lista maxacando la anterior, si hay 3 entidades, muestra 3 veces la ultima entidad
                 entidadesBancarias.add(entidadBancaria);
                              
             }
             
             conexion.close();
-            
+            return entidadesBancarias;
         }catch(SQLException e){
             throw new RuntimeException(e);
         }
-       return entidadesBancarias;
+     
         
     }
     
