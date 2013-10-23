@@ -39,7 +39,8 @@ public class DesdeCero {
        entidadBancaria.insert(ent);
        entidadBancaria.delete(1);
        entidadBancaria.update(ent1);*/
-        List<EntidadBancaria> lista=entidadBancariaDAO.findAll();
+        String codigo="";
+        List<EntidadBancaria> lista=entidadBancariaDAO.findByCodigo(codigo);
         
         for(EntidadBancaria e:lista){
             System.out.println(e.getIdEntidad());

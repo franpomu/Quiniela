@@ -18,5 +18,7 @@ public interface EntidadBancariaDAO extends GenericDAO<EntidadBancaria,Integer>{
     public void delete(Integer id);
     public void update(EntidadBancaria entidadBancaria);
     public List<EntidadBancaria> findAll();
+    public List<EntidadBancaria> findByName(String nombre);
+    public List<EntidadBancaria> findByCodigo(String codigo);
 
 }

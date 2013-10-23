@@ -141,5 +141,81 @@ public class EntidadBancariaDAOImplJDBC implements EntidadBancariaDAO{
      
         
     }
+
+    @Override
+    public List<EntidadBancaria> findByName(String nombreEntidad) {
+        
+        List<EntidadBancaria> entidadesBancarias=new ArrayList();
+        Connection conexion=connectionFactory.getConnection();
+        
+        try{
+            PreparedStatement ps;
+            String selectSQL;
+            if(nombreEntidad == null || nombreEntidad.trim().isEmpty()){
+                selectSQL="SELECT * FROM entidadbancaria";
+                ps=conexion.prepareStatement(selectSQL);
+                }else{
+                    selectSQL="SELECT * FROM entidadbancaria WHERE nombre LIKE ?";
+                    ps=conexion.prepareStatement(selectSQL);
+                    ps.setString(1,nombreEntidad);
+            }
+            
+            ResultSet rs=ps.executeQuery();
+           
+            while(rs.next()){
+                EntidadBancaria entidadBancaria=new EntidadBancaria();
+                entidadBancaria.setIdEntidad(rs.getInt("idEntidad"));
+                entidadBancaria.setCodigoEntidad(rs.getString("codigoEntidad"));
+                entidadBancaria.setNombre(rs.getString("nombre"));
+                entidadBancaria.setCif(rs.getString("cif"));
+                entidadBancaria.setTipoEntidad(TipoEntidadBancaria.valueOf(rs.getString("tipoEntidadBancaria")));
+                entidadesBancarias.add(entidadBancaria);
+                             
+            }
+            
+            conexion.close();
+            return entidadesBancarias;
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<EntidadBancaria> findByCodigo(String codigoEntidad) {
+        
+        List<EntidadBancaria> entidadesBancarias=new ArrayList();
+        Connection conexion=connectionFactory.getConnection();
+        
+        try{
+            PreparedStatement ps;
+            String selectSQL;
+            if(codigoEntidad == null || codigoEntidad.trim().isEmpty()){
+                selectSQL="SELECT * FROM entidadbancaria";
+                ps=conexion.prepareStatement(selectSQL);
+                }else{
+                    selectSQL="SELECT * FROM entidadbancaria WHERE codigoEntidad LIKE ?";
+                    ps=conexion.prepareStatement(selectSQL);
+                    ps.setString(1,codigoEntidad);
+            }
+            
+            ResultSet rs=ps.executeQuery();
+           
+            while(rs.next()){
+                EntidadBancaria entidadBancaria=new EntidadBancaria();
+                entidadBancaria.setIdEntidad(rs.getInt("idEntidad"));
+                entidadBancaria.setCodigoEntidad(rs.getString("codigoEntidad"));
+                entidadBancaria.setNombre(rs.getString("nombre"));
+                entidadBancaria.setCif(rs.getString("cif"));
+                entidadBancaria.setTipoEntidad(TipoEntidadBancaria.valueOf(rs.getString("tipoEntidadBancaria")));
+                entidadesBancarias.add(entidadBancaria);
+                             
+            }
+            
+            conexion.close();
+            return entidadesBancarias;
+        }catch(SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
     
 }
