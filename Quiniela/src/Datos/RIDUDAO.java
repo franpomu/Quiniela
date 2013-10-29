@@ -1,0 +1,27 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Datos;
+
+import Negocio.Equipo;
+import Negocio.Jornada;
+import java.math.BigDecimal;
+import java.util.List;
+
+/**
+ *
+ * @author iTo
+ */
+public interface RIDUDAO {
+    
+    public Equipo leerEquipo(Integer idEquipo);
+    public void mostrarEquipo(Equipo equipo);
+    public void escribirHistorico();
+    //El equipo 1 sera el que esta emparejado con el equipo 2
+    public List<Jornada> leerJornada();
+    public void mostrarJornada();
+    
+    
+    
+}
