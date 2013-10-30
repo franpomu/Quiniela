@@ -153,6 +153,7 @@ public class RIDUDAOImplJDBC implements RIDUDAO{
            try{
               Connection conexion=connectionFactory.getConnection();
               PreparedStatement ps=conexion.prepareStatement(insertSQL);
+              
               for(Jornada jornada:jornadaLeida){
                 ps.setNull(1,java.sql.Types.INTEGER);
                 ps.setInt(2,jornada.getIdJornada());
@@ -162,10 +163,12 @@ public class RIDUDAOImplJDBC implements RIDUDAO{
                 ps.setInt(6,2013);
                 ps.executeUpdate();
               }
+              conexion.close();
             }catch(SQLException e){
                 e.printStackTrace();
                 System.out.println("ERROR"+e);
             }
+           
         
     }
 
