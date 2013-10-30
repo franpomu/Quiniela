@@ -5,83 +5,98 @@
 package Datos;
 
 import Negocio.Equipo;
-
+import Negocio.Jornada;
+import java.util.List;
 
 /**
  *
  * @author iTo
  */
 public class Estadisticas {
-    
-    RIDUDAO ridudao=new RIDUDAOImplJDBC();
-    
-    
-     public double redondear( double numero, int decimales ) {
-        return Math.round(numero*Math.pow(10,decimales))/Math.pow(10,decimales);
+
+    RIDUDAO ridudao = new RIDUDAOImplJDBC();
+
+    public double redondear(double numero, int decimales) {
+        return Math.round(numero * Math.pow(10, decimales)) / Math.pow(10, decimales);
     }
-     
-     
-    public double porcentajeGanado(Equipo equipo){
+
+    public double porcentajeGanado(Equipo equipo) {
         double ganados;
-        ganados=100*(equipo.getPartidosGanados()/equipo.getPartidosJugados()); 
-        ganados=redondear(ganados,2);
+        ganados = 100 * (equipo.getPartidosGanados() / equipo.getPartidosJugados());
+        ganados = redondear(ganados, 2);
         return ganados;
     }
-    
-    public double porcentajeEmpatado(Equipo equipo){
+
+    public double porcentajeEmpatado(Equipo equipo) {
         double empatados;
-        empatados=100*(equipo.getPartidosEmpatados()/equipo.getPartidosJugados()); 
-        empatados=redondear(empatados,2);
+        empatados = 100 * (equipo.getPartidosEmpatados() / equipo.getPartidosJugados());
+        empatados = redondear(empatados, 2);
         return empatados;
     }
-    
-    public double porcentajePerdido(Equipo equipo){
+
+    public double porcentajePerdido(Equipo equipo) {
         double perdidos;
-        perdidos=100*(equipo.getPartidosPerdidos()/equipo.getPartidosJugados()); 
-        perdidos=redondear(perdidos,2);
+        perdidos = 100 * (equipo.getPartidosPerdidos() / equipo.getPartidosJugados());
+        perdidos = redondear(perdidos, 2);
         return perdidos;
     }
-    
-    public double porcentajeGanadoCasa(Equipo equipo){
+
+    public double porcentajeGanadoCasa(Equipo equipo) {
         double ganados;
-        ganados=100*(equipo.getPartidosGanadosCasa()/equipo.getPartidosJugadosCasa());
-        ganados=redondear(ganados,2);
+        ganados = 100 * (equipo.getPartidosGanadosCasa() / equipo.getPartidosJugadosCasa());
+        ganados = redondear(ganados, 2);
         return ganados;
     }
-    
-    public double porcentajeEmpatadoCasa(Equipo equipo){
+
+    public double porcentajeEmpatadoCasa(Equipo equipo) {
         double empatados;
-        empatados=100*(equipo.getPartidosEmpatadosCasa()/equipo.getPartidosJugadosCasa()); 
-        empatados=redondear(empatados,2);
+        empatados = 100 * (equipo.getPartidosEmpatadosCasa() / equipo.getPartidosJugadosCasa());
+        empatados = redondear(empatados, 2);
         return empatados;
     }
-    
-    public double porcentajePerdidoCasa(Equipo equipo){
+
+    public double porcentajePerdidoCasa(Equipo equipo) {
         double perdidos;
-        perdidos=100*(equipo.getPartidosPerdidosCasa()/equipo.getPartidosJugadosCasa()); 
-        perdidos=redondear(perdidos,2);
+        perdidos = 100 * (equipo.getPartidosPerdidosCasa() / equipo.getPartidosJugadosCasa());
+        perdidos = redondear(perdidos, 2);
         return perdidos;
     }
-    
-    public double porcentajeGanadoFuera(Equipo equipo){
+
+    public double porcentajeGanadoFuera(Equipo equipo) {
         double ganados;
-        ganados=100*(equipo.getPartidosGanadosFuera()/equipo.getPartidosJugadosFuera());
-        ganados=redondear(ganados,2);
+        ganados = 100 * (equipo.getPartidosGanadosFuera() / equipo.getPartidosJugadosFuera());
+        ganados = redondear(ganados, 2);
         return ganados;
-        
+
     }
-    
-    public double porcentajeEmpatadoFuera(Equipo equipo){
+
+    public double porcentajeEmpatadoFuera(Equipo equipo) {
         double empatados;
-        empatados=100*(equipo.getPartidosEmpatadosFuera()/equipo.getPartidosJugadosFuera()); 
-        empatados=redondear(empatados,2);
+        empatados = 100 * (equipo.getPartidosEmpatadosFuera() / equipo.getPartidosJugadosFuera());
+        empatados = redondear(empatados, 2);
         return empatados;
     }
-    
-    public double porcentajePerdidoFuera(Equipo equipo){
+
+    public double porcentajePerdidoFuera(Equipo equipo) {
         double perdidos;
-        perdidos=100*(equipo.getPartidosPerdidosFuera()/equipo.getPartidosJugadosFuera()); 
-        perdidos=redondear(perdidos,2);
+        perdidos = 100 * (equipo.getPartidosPerdidosFuera() / equipo.getPartidosJugadosFuera());
+        perdidos = redondear(perdidos, 2);
         return perdidos;
+    }
+
+    public void mostrarJornada() {
+
+        RIDUDAO ridudao = new RIDUDAOImplJDBC();
+        List<Jornada> jornadaLeida = ridudao.leerJornada();
+
+        System.out.println("------------------------------------------------");
+        for (Jornada jornada : jornadaLeida) {
+            System.out.println("IdJornada:" + jornada.getIdJornada());
+            System.out.println("Jornada:" + jornada.getJornada());
+            System.out.println("EquipoLocal:" + jornada.getEquipoLocal());
+            System.out.println("EquipoVisitante:" + jornada.getEquipoVisitante());
+            System.out.println("------------------------------------------------");
+
+        }
     }
 }

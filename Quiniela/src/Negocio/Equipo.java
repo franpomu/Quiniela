@@ -13,7 +13,7 @@ import java.util.List;
  * @author iTo
  */
 public class Equipo {
-    
+
     private Integer idEquipo;
     private String nombreEquipo;
     private Integer formaEquipo;
@@ -396,7 +396,6 @@ public class Equipo {
         this.golesContraFuera = golesContraFuera;
     }
 }
-    /**
-     * @return the partidosJugados
-     */
-   
+/**
+ * @return the partidosJugados
+ */

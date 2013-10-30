@@ -13,7 +13,8 @@ import java.util.List;
  * @author iTo
  */
 public interface ConnectionFactory {
-     
+
     public Connection getConnection();
+
     public void closeConnection(Connection conexion);
 }

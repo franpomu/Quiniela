@@ -11,14 +11,18 @@ import java.util.List;
  * @author iTo
  */
 public class Jornada {
-    
+
     private int idJornada;
     private String equipoLocal;
+    private int idEquipoLocal;
+    private int idEquipoVisitante;
+    private double golesLocal;
+    private double golesVisitante;
     private String equipoVisitante;
     private int jornada;
     private List<Equipo> equipo;
-    
-    public Jornada(){
+
+    public Jornada() {
     }
 
     /**
@@ -76,6 +80,74 @@ public class Jornada {
     public void setJornada(int jornada) {
         this.jornada = jornada;
     }
-    
-    
+
+    /**
+     * @return the golesLocal
+     */
+    public double getGolesLocal() {
+        return golesLocal;
+    }
+
+    /**
+     * @param golesLocal the golesLocal to set
+     */
+    public void setGolesLocal(double golesLocal) {
+        this.golesLocal = golesLocal;
+    }
+
+    /**
+     * @return the golesVisitante
+     */
+    public double getGolesVisitante() {
+        return golesVisitante;
+    }
+
+    /**
+     * @param golesVisitante the golesVisitante to set
+     */
+    public void setGolesVisitante(double golesVisitante) {
+        this.golesVisitante = golesVisitante;
+    }
+
+    /**
+     * @return the equipo
+     */
+    public List<Equipo> getEquipo() {
+        return equipo;
+    }
+
+    /**
+     * @param equipo the equipo to set
+     */
+    public void setEquipo(List<Equipo> equipo) {
+        this.equipo = equipo;
+    }
+
+    /**
+     * @return the idEquipoLocal
+     */
+    public int getIdEquipoLocal() {
+        return idEquipoLocal;
+    }
+
+    /**
+     * @param idEquipoLocal the idEquipoLocal to set
+     */
+    public void setIdEquipoLocal(int idEquipoLocal) {
+        this.idEquipoLocal = idEquipoLocal;
+    }
+
+    /**
+     * @return the idEquipoVisitante
+     */
+    public int getIdEquipoVisitante() {
+        return idEquipoVisitante;
+    }
+
+    /**
+     * @param idEquipoVisitante the idEquipoVisitante to set
+     */
+    public void setIdEquipoVisitante(int idEquipoVisitante) {
+        this.idEquipoVisitante = idEquipoVisitante;
+    }
 }

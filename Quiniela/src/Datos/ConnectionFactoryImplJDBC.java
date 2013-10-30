@@ -12,41 +12,40 @@ import java.sql.SQLException;
  *
  * @author iTo
  */
-public class ConnectionFactoryImplJDBC implements ConnectionFactory{
+public class ConnectionFactoryImplJDBC implements ConnectionFactory {
 
     @Override
     public Connection getConnection() {
-        try{
+        try {
             Class.forName("com.mysql.jdbc.Driver");
-        }catch(ClassNotFoundException e){
+        } catch (ClassNotFoundException e) {
             System.out.print("No se encontro diver mysql");
             e.printStackTrace();
         }
-        Connection conexion=null;
-        try{
-            conexion=DriverManager.getConnection("jdbc:mysql://localhost:3306/quniela","root", "159753");
-        }catch(SQLException e){
+        Connection conexion = null;
+        try {
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/quniela", "root", "159753");
+        } catch (SQLException e) {
             System.out.println("Fallo en la conexion");
             e.printStackTrace();
         }
-        
-        if(conexion != null){
+
+        if (conexion != null) {
             System.out.println("Conexion realizada con exito");
-        }else{
+        } else {
             System.out.println("Conexion fallida");
         }
-        
+
         return conexion;
     }
 
     @Override
     public void closeConnection(Connection conexion) {
-        try{
+        try {
             conexion.close();
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.out.print("No se ha cerrado la conexion");
             e.printStackTrace();
         }
     }
-    
 }

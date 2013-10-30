@@ -9,5 +9,6 @@ package Negocio;
  * @author iTo
  */
 public enum TipoLiga {
-    Primera,Segunda,ChampionsLeague;
+
+    Primera, Segunda, ChampionsLeague;
 }
