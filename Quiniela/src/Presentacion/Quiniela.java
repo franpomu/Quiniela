@@ -8,6 +8,8 @@ import Datos.Estadisticas;
 import Datos.RIDUDAO;
 import Datos.RIDUDAOImplJDBC;
 import Negocio.Equipo;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -23,6 +25,7 @@ public class Quiniela {
 
         RIDUDAO ridudao = new RIDUDAOImplJDBC();
         Estadisticas estadistica = new Estadisticas();
+        List<Equipo> equipoList=new ArrayList();
 
         Equipo equipo = new Equipo();
 
@@ -47,5 +50,7 @@ public class Quiniela {
         System.out.println("Empatadosfuera:" + empatadosfuera + "%");*/
         //ridudao.escribirHistorico();
         //ridudao.introducirResultado(1,2);
+        //ridudao.introducirResultados();
+        //estadistica.mostrarHistorico(1,3);
     }
 }

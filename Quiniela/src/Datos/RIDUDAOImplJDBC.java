@@ -82,33 +82,6 @@ public class RIDUDAOImplJDBC implements RIDUDAO {
     }
 
     @Override
-    public void mostrarEquipo(Equipo equipo) {
-        System.out.println("Id Equipo:" + equipo.getIdEquipo());
-        System.out.println("Nombre Equipo:" + equipo.getNombreEquipo());
-        System.out.println("Forma Equipo:" + equipo.getFormaEquipo());
-        System.out.println("Tipo Liga:" + equipo.getTipoLiga());
-        System.out.println("Partidos Jugado:" + equipo.getPartidosJugados());
-        System.out.println("Partidos Ganados:" + equipo.getPartidosGanados());
-        System.out.println("Partidos Perdidos:" + equipo.getPartidosPerdidos());
-        System.out.println("Partidos Empatados:" + equipo.getPartidosEmpatados());
-        System.out.println("Partidos Jugados en Casa:" + equipo.getPartidosJugadosCasa());
-        System.out.println("Partidos Ganados en Casa:" + equipo.getPartidosGanadosCasa());
-        System.out.println("Partidos Perdidos en Casa:" + equipo.getPartidosPerdidosCasa());
-        System.out.println("Partidos Empatados en Casa:" + equipo.getPartidosEmpatadosCasa());
-        System.out.println("Partidos Jugados Fuera de Casa:" + equipo.getPartidosJugadosFuera());
-        System.out.println("Partidos Ganados Fuera de Casa:" + equipo.getPartidosGanadosFuera());
-        System.out.println("Partidos Perdidos Fuera de Casa:" + equipo.getPartidosPerdidosFuera());
-        System.out.println("Partidos Empatados Fuera de Casa:" + equipo.getPartidosEmpatadosFuera());
-        System.out.println("Goles:" + equipo.getGoles());
-        System.out.println("Goles a Favor:" + equipo.getGolesFavor());
-        System.out.println("Goles en Contra:" + equipo.getGolesContra());
-        System.out.println("Goles a Favor en Casa:" + equipo.getGolesFavorCasa());
-        System.out.println("Goles en Contra en Casa:" + equipo.getGolesContraCasa());
-        System.out.println("Goles a Favor Fuera;" + equipo.getGolesFavorFuera());
-        System.out.println("Goles en Contra Fuera:" + equipo.getGolesContraFuera());
-    }
-
-    @Override
     public List<Jornada> leerJornada() {
 
         List<Jornada> jornadaLista = new ArrayList();
@@ -140,7 +113,7 @@ public class RIDUDAOImplJDBC implements RIDUDAO {
 
 
         List<Jornada> jornadaLeida = leerJornada();
-        String insertSQL = "INSERT INTO historico(idHistorico,idJornada,idEquipoLocal,equipoLocal,golesLocal,idEquipoVisitante,equipoVisitante,golesVisitante,jornada,anyo) VALUES(?,?,?,?,?,?,?,?,?,?)";
+        String insertSQL = "INSERT INTO historico(idHistorico,idEquipoLocal,equipoLocal,golesLocal,idEquipoVisitante,equipoVisitante,golesVisitante,jornada) VALUES(?,?,?,?,?,?,?,?)";
 
 
         try {
@@ -149,15 +122,13 @@ public class RIDUDAOImplJDBC implements RIDUDAO {
 
             for (Jornada jornada : jornadaLeida) {
                 ps.setNull(1, java.sql.Types.INTEGER);
-                ps.setInt(2, jornada.getIdJornada());
-                ps.setInt(3, jornada.getIdEquipoLocal());
-                ps.setString(4, jornada.getEquipoLocal());
-                ps.setDouble(5, jornada.getGolesLocal());
-                ps.setInt(6, jornada.getIdEquipoVisitante());
-                ps.setString(7, jornada.getEquipoVisitante());
-                ps.setDouble(8, jornada.getGolesVisitante());
-                ps.setInt(9, jornada.getJornada());
-                ps.setInt(10, 2013);
+                ps.setInt(2, jornada.getIdEquipoLocal());
+                ps.setString(3, jornada.getEquipoLocal());
+                ps.setDouble(4, jornada.getGolesLocal());
+                ps.setInt(5, jornada.getIdEquipoVisitante());
+                ps.setString(6, jornada.getEquipoVisitante());
+                ps.setDouble(7, jornada.getGolesVisitante());
+                ps.setInt(8, jornada.getJornada());
                 ps.executeUpdate();
             }
             conexion.close();
@@ -171,15 +142,45 @@ public class RIDUDAOImplJDBC implements RIDUDAO {
 
     @Override
     public List<Equipo> historicoResultados(Integer idEquipoLocal, Integer idEquipoVisitante) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
-
+      
+        
+        String selectSQL="SELECT idEquipoLocal,equipoLocal,golesLocal,idEquipovisitante,equipoVisitante,golesVisitante FROM historico WHERE idEquipoLocal=? and idEquipoVisitante=?";
+        List<Equipo> equipoList=new ArrayList();
+        Equipo equipoLocal=null;
+        Equipo equipoVisitante=null;
+        try{
+            Connection conexion=connectionFactory.getConnection();
+            PreparedStatement ps=conexion.prepareStatement(selectSQL);
+            ps.setInt(1,idEquipoLocal);
+            ps.setInt(2, idEquipoVisitante);
+            ResultSet rs=ps.executeQuery();
+                    
+            while(rs.next()){
+                equipoLocal=new Equipo();
+                equipoVisitante=new Equipo();
+                
+                equipoLocal.setIdEquipo(idEquipoLocal);
+                equipoLocal.setNombreEquipo(rs.getString("equipoLocal"));
+                equipoLocal.setGoles(rs.getFloat("golesLocal"));
+                equipoVisitante.setIdEquipo(idEquipoVisitante);
+                equipoVisitante.setNombreEquipo(rs.getString("equipoVisitante"));
+                equipoVisitante.setGoles(rs.getFloat("golesVisitante"));
+                equipoList.add(equipoLocal);
+                equipoList.add(equipoVisitante);
+                
+            }
+            conexion.close();
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        
+        return equipoList;
     }
 
     @Override
     public void introducirResultado(Integer idEquipoLocal, Integer idEquipoVisitante) {
 
-        String insertSQL = "UPDATE historico SET golesLocal=?,golesVisitante=? WHERE idEquipoLocal=? and idEquipoVisitante=?";
+        String updateSQL = "UPDATE historico SET golesLocal=?,golesVisitante=? WHERE idEquipoLocal=? and idEquipoVisitante=?";
         Equipo equipoLocal = leerEquipo(idEquipoLocal);
         Equipo equipoVisitante = leerEquipo(idEquipoVisitante);
         Double golesLocal = 0.0;
@@ -198,15 +199,62 @@ public class RIDUDAOImplJDBC implements RIDUDAO {
 
         try {
             Connection conexion = connectionFactory.getConnection();
-            PreparedStatement ps = conexion.prepareStatement(insertSQL);
+            PreparedStatement ps = conexion.prepareStatement(updateSQL);
             ps.setDouble(1, golesLocal);
             ps.setDouble(2, golesVisitante);
             ps.setInt(3, idEquipoLocal);
             ps.setInt(4, idEquipoVisitante);
             ps.executeUpdate();
+            conexion.close();
         } catch (SQLException e) {
+            e.printStackTrace();
         }
 
 
+    }
+
+    @Override
+    public void introducirResultados() {
+
+        List<Jornada> jornadaList = new ArrayList();
+        String updateSQL="UPDATE historico SET golesLocal=?,golesVisitante=? where idEquipoLocal=? and idEquipoVisitante=?";
+        
+        jornadaList = leerJornada();
+        Equipo equipoLocal = null;
+        Equipo equipoVisitante = null;
+        BufferedReader leer = new BufferedReader(new InputStreamReader(System.in));
+        Double golesLocal = 0.0;
+        Double golesVisitante = 0.0;
+
+        System.out.println("--------------------------");
+        for (Jornada jornada : jornadaList) {
+            
+            equipoLocal = new Equipo();
+            equipoVisitante = new Equipo();
+            equipoLocal = leerEquipo(jornada.getIdEquipoLocal());
+            equipoVisitante = leerEquipo(jornada.getIdEquipoVisitante());
+            System.out.println(equipoLocal.getNombreEquipo() + "-" + equipoVisitante.getNombreEquipo());
+        
+            try {
+                golesLocal = Double.valueOf(leer.readLine());
+                golesVisitante = Double.valueOf(leer.readLine());
+            } catch (IOException ex) {
+                Logger.getLogger(RIDUDAOImplJDBC.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            System.out.println("--------------------------");
+            
+            try{
+                Connection conexion=connectionFactory.getConnection();
+                PreparedStatement ps=conexion.prepareStatement(updateSQL);
+                ps.setDouble(1, golesLocal);
+                ps.setDouble(2, golesVisitante);
+                ps.setInt(3,jornada.getIdEquipoLocal());
+                ps.setInt(4,jornada.getIdEquipoVisitante());
+                ps.executeUpdate();
+                conexion.close();
+            }catch(SQLException e){
+                e.printStackTrace();
+            }
+        }
     }
 }

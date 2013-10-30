@@ -20,6 +20,7 @@ public class Equipo {
     private TipoLiga tipoLiga;
     private Integer jugadorClave;
     private Integer puntosEquipo;
+    private String equipoGrande;
     //Jugados
     private float partidosJugados;
     private float partidosGanados;
@@ -395,7 +396,21 @@ public class Equipo {
     public void setGolesContraFuera(float golesContraFuera) {
         this.golesContraFuera = golesContraFuera;
     }
+
+    /**
+     * @return the equipoGrande
+     */
+    public String getEquipoGrande() {
+        return equipoGrande;
+    }
+
+    /**
+     * @param equipoGrande the equipoGrande to set
+     */
+    public void setEquipoGrande(String equipoGrande) {
+        this.equipoGrande = equipoGrande;
+    }
+
+   
+    
 }
-/**
- * @return the partidosJugados
- */

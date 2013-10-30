@@ -17,8 +17,6 @@ public interface RIDUDAO {
 
     public Equipo leerEquipo(Integer idEquipo);
 
-    public void mostrarEquipo(Equipo equipo);
-
     public void escribirHistorico();
     //El equipo 1 sera el que esta emparejado con el equipo 2
 
@@ -27,4 +25,6 @@ public interface RIDUDAO {
     public List<Equipo> historicoResultados(Integer idEquipoLocal, Integer idEquipoVisitante);
 
     public void introducirResultado(Integer idEquipoLocal, Integer idEquipoVisitante);
+    
+    public void introducirResultados();
 }
